@@ -2,6 +2,7 @@ package com.godigit.SpringEmployee.controller;
 
 import com.godigit.SpringEmployee.model.Employee;
 import com.godigit.SpringEmployee.service.EmployeeService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +33,7 @@ public class EmployeeController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> updateById(@PathVariable Long id, @RequestBody Employee employee) {
+    public ResponseEntity<String> updateById(@PathVariable Long id,@Valid @RequestBody Employee employee) {
         return new ResponseEntity<>(employeeService.updateEmployee(id, employee), HttpStatus.ACCEPTED);
     }
 

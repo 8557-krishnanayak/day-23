@@ -4,6 +4,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,7 +23,12 @@ public class Employee {
     private Long id;
     private String firstName;
     private String lastName;
+
+    @Email
     private String email;
     private String department;
+
+    @Min(value = 10000, message = "salary can't be less than 10000")
+    @Max(value = 200000, message = "salary can't be more than 200000")
     private double salary;
 }

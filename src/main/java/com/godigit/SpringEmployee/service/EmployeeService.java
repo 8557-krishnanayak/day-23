@@ -2,6 +2,7 @@ package com.godigit.SpringEmployee.service;
 
 import com.godigit.SpringEmployee.model.Employee;
 import com.godigit.SpringEmployee.repository.EmployeeRepository;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,10 +34,12 @@ public class EmployeeService {
     }
 
     // updateEmployee
-    public String updateEmployee(Long id, Employee e) {
+    public String updateEmployee(Long id,Employee e) {
         Employee employee = getEmployeeById(id);
         employee.setFirstName(e.getFirstName());
         employee.setLastName(e.getLastName());
+        employee.setEmail(e.getEmail());
+        employee.setSalary(e.getSalary());
         employeeRepository.save(employee);
         return "changes done";
     }
