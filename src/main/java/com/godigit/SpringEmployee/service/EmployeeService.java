@@ -2,6 +2,7 @@ package com.godigit.SpringEmployee.service;
 
 import com.godigit.SpringEmployee.model.Employee;
 import com.godigit.SpringEmployee.repository.EmployeeRepository;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -48,5 +49,10 @@ public class EmployeeService {
     public String deleteEmployeeById(Long id) {
         employeeRepository.deleteById(id);
         return "Employee id:\t" + id + " [DELETE]";
+    }
+
+    @Transactional
+    public void addMultipleData(List<Employee> list) {
+        employeeRepository.saveAll(list);
     }
 }
